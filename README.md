@@ -1,6 +1,7 @@
 # 🧪 Cypress E2E – SauceDemo
 
-Projeto de automação de testes End-to-End (E2E) com Cypress no site SauceDemo.  
+![Cypress CI](https://github.com/brezinskieduarda/cypress/actions/workflows/ci.yml/badge.svg)
+
 Site: https://www.saucedemo.com
 
 ## ✅ Tecnologias
