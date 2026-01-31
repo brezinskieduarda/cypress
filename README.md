@@ -21,7 +21,6 @@ Projeto de automação de testes End-to-End (E2E) utilizando **Cypress**, aplica
 
 ## 📁 Estrutura do projeto
 
-```text
 cypress/
 ├── e2e/
 │   ├── checkout/
