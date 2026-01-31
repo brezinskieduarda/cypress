@@ -6,6 +6,7 @@
 
 ![Cypress CI](https://github.com/brezinskieduarda/cypress/actions/workflows/ci.yml/badge.svg)
 
+
 Projeto de automação de testes End-to-End (E2E) utilizando **Cypress**, aplicado ao site SauceDemo.  
 🔗 https://www.saucedemo.com
 
