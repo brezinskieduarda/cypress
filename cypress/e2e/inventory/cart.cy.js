@@ -1,36 +1,27 @@
-import LoginPage from '../../pages/login.page'
-import InventoryPage from '../../pages/inventory.page'
-import CartPage from '../../pages/cart.page'
-
 describe('Carrinho - SauceDemo', () => {
+    let users
 
-    const loginPage = new LoginPage()
-    const inventoryPage = new InventoryPage()
-    const cartPage = new CartPage()
+    before(() => {
+        cy.fixture('users').then((u) => (users = u))
+    })
 
     beforeEach(() => {
-        cy.fixture('users').then((users) => {
-            loginPage.visit()
-            loginPage.login(
-                users.standard.username,
-                users.standard.password
-            )
-        })
+        cy.login(users.standard.username, users.standard.password)
     })
 
     it('Deve adicionar produto ao carrinho', () => {
-        inventoryPage.addBackpackToCart()
-        inventoryPage.goToCart()
+        cy.addItemToCart('sauce-labs-backpack')
+        cy.goToCart()
 
-        cartPage.getCartItem().should('have.length', 1)
-        cartPage.checkoutButton().should('be.visible')
+        cy.shouldHaveCartItems(1)
+        cy.get('[data-test="checkout"]').should('be.visible')
     })
 
     it('Deve remover produto do carrinho', () => {
-        inventoryPage.addBackpackToCart()
-        inventoryPage.goToCart()
+        cy.addItemToCart('sauce-labs-backpack')
+        cy.goToCart()
 
-        cartPage.removeBackpack()
-        cartPage.getCartItem().should('have.length', 0)
+        cy.removeItemFromCart('sauce-labs-backpack')
+        cy.shouldHaveCartItems(0)
     })
 })

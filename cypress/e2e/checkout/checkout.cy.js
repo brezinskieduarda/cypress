@@ -1,40 +1,42 @@
-import LoginPage from '../../pages/login.page'
-import InventoryPage from '../../pages/inventory.page'
-import CartPage from '../../pages/cart.page'
-import CheckoutPage from '../../pages/checkout.page'
-
 describe('Checkout - SauceDemo', () => {
+    let users
+    let checkout
 
-    const loginPage = new LoginPage()
-    const inventoryPage = new InventoryPage()
-    const cartPage = new CartPage()
-    const checkoutPage = new CheckoutPage()
-
-    beforeEach(() => {
-        cy.fixture('users').then((users) => {
-            loginPage.visit()
-            loginPage.login(
-                users.standard.username,
-                users.standard.password
-            )
-        })
-
-        inventoryPage.addBackpackToCart()
-        inventoryPage.goToCart()
-        cartPage.checkoutButton().click()
+    before(() => {
+        cy.fixture('users').then((u) => (users = u))
+        cy.fixture('checkout').then((c) => (checkout = c))
     })
 
     it('Deve finalizar compra com sucesso', () => {
-        cy.fixture('checkout').then((data) => {
-            checkoutPage.fillFirstName(data.validUser.firstName)
-            checkoutPage.fillLastName(data.validUser.lastName)
-            checkoutPage.fillPostalCode(data.validUser.postalCode)
-        })
+        cy.login(users.standard.username, users.standard.password)
+        cy.addItemToCart('sauce-labs-backpack')
+        cy.goToCart()
+        cy.startCheckout()
+        cy.fillCheckoutInfo(checkout.validUser)
+        cy.continueCheckout()
+        cy.finishCheckout()
+        cy.shouldSeeCheckoutSuccess()
+    })
+})
+describe('Checkout - validações', () => {
+    let users
 
-        checkoutPage.continue()
-        checkoutPage.finish()
+    before(() => {
+        cy.fixture('users').then((u) => (users = u))
+    })
 
-        checkoutPage.successMessage()
-            .should('contain', 'Thank you for your order')
+    beforeEach(() => {
+        cy.login(users.standard.username, users.standard.password)
+        cy.addItemToCart('sauce-labs-backpack')
+        cy.goToCart()
+        cy.startCheckout()
+    })
+
+    it('Deve bloquear checkout sem postal code', () => {
+        cy.get('[data-test="firstName"]').type('Eduarda')
+        cy.get('[data-test="lastName"]').type('Brezinski')
+        cy.get('[data-test="continue"]').click()
+
+        cy.get('[data-test="error"]').should('be.visible')
     })
 })
