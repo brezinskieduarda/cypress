@@ -1,6 +1,7 @@
 name: Cypress CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
   pull_request:
@@ -24,7 +25,7 @@ jobs:
         run: npm ci
 
       - name: Run Cypress tests
-        run: npx cypress run
+        run: npm test
 
       # Upload artifacts only if tests fail
       - name: Upload screenshots (on failure)
