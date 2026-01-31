@@ -1,11 +1,6 @@
-
----
-
-````md
 # 🧪 Cypress E2E – SauceDemo
 
-![Cypress CI](https://github.com/brezinskieduarda/cypress/actions/workflows/ci.yml/badge.svg)
-
+![Cypress CI](https://github.com/brezinskieduarda/cypress/actions/workflows/ci.yml/badge.svg?branch=main)
 
 Projeto de automação de testes End-to-End (E2E) utilizando **Cypress**, aplicado ao site SauceDemo.  
 🔗 https://www.saucedemo.com
@@ -22,6 +17,7 @@ Projeto de automação de testes End-to-End (E2E) utilizando **Cypress**, aplica
 
 ## 📁 Estrutura do projeto
 
+```text
 cypress/
 ├── e2e/
 │   ├── checkout/
@@ -41,98 +37,49 @@ cypress/
 ├── cypress.config.js
 ├── package.json
 └── package-lock.json
-````
+⚙️ Pré-requisitos
+Node.js
 
----
+Git
 
-## ⚙️ Pré-requisitos
-
-Antes de executar o projeto, é necessário ter instalado:
-
-* **Node.js**
-* **Git**
-
----
-
-## 📦 Instalação
-
-Clone o repositório e instale as dependências:
-
-```bash
+📦 Instalação
 npm install
-```
-
----
-
-## ▶️ Executando os testes
-
-### 🔹 Modo interativo (UI)
-
-Executa os testes com interface gráfica do Cypress:
-
-```bash
+▶️ Executando os testes
+🔹 Modo interativo (UI)
 npx cypress open
-```
-
-### 🔹 Modo headless (terminal / CI)
-
-Executa todos os testes de forma automática:
-
-```bash
+🔹 Modo headless (terminal / CI)
 npx cypress run
-```
+🧠 Arquitetura do projeto
+Abordagem Cypress-first (sem Page Object), com:
 
----
+Commands customizados (cypress/support/commands.js)
 
-## 🧠 Arquitetura do projeto
+Seletores baseados em data-test
 
-Este projeto segue uma abordagem **Cypress-first**, sem utilização de **Page Object Model (POM)**.
+Fixtures em cypress/fixtures
 
-### Principais características:
+🧪 Cenários automatizados
+🔐 Login
+Login com usuário válido
 
-* ✅ **Commands customizados** para reaproveitamento de ações
-* ✅ **Seletores baseados em `data-test`**
-* ✅ **Fixtures** para centralização da massa de dados
-* ✅ Testes organizados por **funcionalidade**
+Login com usuário bloqueado
 
-Essa abordagem prioriza:
+Login com senha incorreta
 
-* Legibilidade
-* Manutenção
-* Menor acoplamento
-* Aderência às boas práticas recomendadas pelo Cypress
+🛒 Carrinho
+Adicionar produto ao carrinho
 
----
+Remover produto do carrinho
 
-## 🧪 Cenários automatizados
+Validação da quantidade de itens
 
-### 🔐 Login
+💳 Checkout
+Preenchimento dos dados obrigatórios
 
-* Login com usuário válido
-* Login com usuário bloqueado
-* Login com senha incorreta
+Finalização de compra com sucesso
 
-### 🛒 Carrinho
+🔒 Segurança
+Tentativa de acesso a rota protegida sem login (redirect ou 404)
 
-* Adicionar produto ao carrinho
-* Remover produto do carrinho
-* Validação da quantidade de itens
-
-### 💳 Checkout
-
-* Preenchimento dos dados obrigatórios
-* Finalização de compra com sucesso
-
-### 🔒 Segurança
-
-* Tentativa de acesso a rota protegida sem login
-
-  > O SauceDemo pode responder com **redirect para login** ou **404**, ambos tratados como bloqueio válido.
-
----
-
-## 👩‍💻 Autora
-
-**Eduarda Brezinski**
-Projeto desenvolvido com foco em **boas práticas de QA Automation** e **portfólio profissional**.
-
+👩‍💻 Autora
+Eduarda Brezinski
