@@ -37,49 +37,43 @@ cypress/
 ├── cypress.config.js
 ├── package.json
 └── package-lock.json
-⚙️ Pré-requisitos
-Node.js
 
-Git
+⚙️ Pré-requisitos
+🔹Node.js
+🔹Git
 
 📦 Instalação
-npm install
+🔹npm install
+
 ▶️ Executando os testes
 🔹 Modo interativo (UI)
 npx cypress open
 🔹 Modo headless (terminal / CI)
 npx cypress run
+
 🧠 Arquitetura do projeto
 Abordagem Cypress-first (sem Page Object), com:
-
-Commands customizados (cypress/support/commands.js)
-
-Seletores baseados em data-test
-
-Fixtures em cypress/fixtures
+🔹Commands customizados (cypress/support/commands.js)
+🔹Seletores baseados em data-test
+🔹Fixtures em cypress/fixtures
 
 🧪 Cenários automatizados
 🔐 Login
-Login com usuário válido
-
-Login com usuário bloqueado
-
-Login com senha incorreta
+🔹Login com usuário válido
+🔹Login com usuário bloqueado
+🔹Login com senha incorreta
 
 🛒 Carrinho
-Adicionar produto ao carrinho
-
-Remover produto do carrinho
-
-Validação da quantidade de itens
+🔹Adicionar produto ao carrinho
+🔹Remover produto do carrinho
+🔹Validação da quantidade de itens
 
 💳 Checkout
-Preenchimento dos dados obrigatórios
-
-Finalização de compra com sucesso
+🔹Preenchimento dos dados obrigatórios
+🔹Finalização de compra com sucesso
 
 🔒 Segurança
-Tentativa de acesso a rota protegida sem login (redirect ou 404)
+🔹Tentativa de acesso a rota protegida sem login (redirect ou 404)
 
 👩‍💻 Autora
 Eduarda Brezinski
